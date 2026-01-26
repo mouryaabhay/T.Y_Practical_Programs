@@ -16,7 +16,7 @@ int count = 0;            // Number of files currently in the directory
 // Initializes the bit vector and sets all memory blocks as free
 void initialize_bit_vector() {
     int i;
-    printf("Enter total number of memory blocks: ");
+    printf("\nEnter total number of memory blocks: ");
     scanf("%d", &memory_size);
 
     for (i = 0; i < memory_size; i++)
@@ -78,7 +78,7 @@ void create_file() {
     char filename[10];
     int filesize, start_pos;
 
-    printf("Enter file name: ");
+    printf("\nEnter file name: ");
     scanf("%s", filename);
 
     printf("Enter file size (blocks): ");
@@ -102,7 +102,7 @@ void delete_file() {
     int i, j, fileSize, filestart;
     char filename[10];
 
-    printf("Enter file name to delete: ");
+    printf("\nEnter file name to delete: ");
     scanf("%s", filename);
 
     // Search for the file in the directory
@@ -125,7 +125,7 @@ void delete_file() {
         }
     }
     // File not found in directory
-    printf("%s not found\n",filename);
+    printf("\n%s not found\n",filename);
 }
 
 // Displays all files currently in the directory with their details
