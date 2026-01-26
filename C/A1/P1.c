@@ -94,7 +94,7 @@ void safety_algo() {
     }
 }
 
-void bankers_algo() {
+void resource_request_algo() {
     int i;
 
     for (i = 0; i < m; i++) {
@@ -158,6 +158,10 @@ void display_matrix() {
         printf("%d ", avail[i]);
 
     printf("\n");
+}
+
+void bankers_algo() {
+    resource_request_algo ();
 }
 
 int main() {
