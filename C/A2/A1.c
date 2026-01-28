@@ -1,3 +1,7 @@
+// Write a program to simulate Sequential(Contiguous) file allocation method. Assume disk
+// with n number of blocks. Give value of n as input. Write menu driver program with menu
+// options as mentioned above and implement each option.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

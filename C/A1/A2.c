@@ -1,5 +1,5 @@
 /*
- * I) Modify above program so asto include the following:
+ * I) Modify above program so as to include the following:
  * a) Accept Request for a process
  * b) Resource request algorithm
  * c) Safety algorithm
