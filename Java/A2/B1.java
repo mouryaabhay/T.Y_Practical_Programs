@@ -1,0 +1,19 @@
+class CustomThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Custom Thread: " + i);
+            Thread.yield(); // Give chance to other threads
+        }
+    }
+}
+
+public class B1 {
+    public static void main(String[] args) {
+        CustomThread t = new CustomThread();
+        t.start();
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Main Thread: " + i);
+        }
+    }
+}
