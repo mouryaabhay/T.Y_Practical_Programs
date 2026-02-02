@@ -68,7 +68,7 @@ void create_file() {
         return;
     }
 
-    while(i != filesize) {
+    while (i < filesize) {
         curr_pos = rand() % memory_size;
 
         if(bit_vector[curr_pos] == -1 && curr_pos != prev_pos) {
@@ -110,7 +110,7 @@ void delete_file() {
                 bit_vector[temp] = -1;
             }
 
-            free_blocks -= directory[i].file_size;
+            free_blocks += directory[i].file_size;
 
             for (j = i; j < count - 1; j++)
                 directory[j] = directory[j + 1];
@@ -153,22 +153,12 @@ int main() {
         scanf("%d", &choice);
 
         switch (choice) {
-        case 1:
-            create_file();
-            break;
-        case 2:
-            delete_file();
-            break;
-        case 3:
-            display_directory();
-            break;
-        case 4:
-            show_memory_blocks();
-            break;
-        case 5:
-            break;
-        default:
-            printf("Invalid choice\n");
+            case 1: create_file(); break;
+            case 2: delete_file(); break;
+            case 3: display_directory(); break;
+            case 4: show_memory_blocks(); break;
+            case 5: break;
+            default: printf("Invalid choice\n");
         }
     } while (choice != 5);
 
