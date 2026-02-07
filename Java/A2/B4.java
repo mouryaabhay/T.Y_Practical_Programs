@@ -1,3 +1,7 @@
+// 4) Write a Java program to simulate a ticket booking system
+// where multiple threads try to book tickets from a limited number of available tickets.
+// Use synchronization to prevent race conditions and ensure correct ticket allocation.
+
 class BookTicket {
     private int availableTickets = 100;
 

@@ -1,3 +1,6 @@
+// 4) Write a Java program to demonstrate the use of Thread.sleep() in a user-defined thread.
+// Show how the main thread and the child thread execute concurrently with delayed output from the child thread.
+
 class MyThread extends Thread {
     public void run() {
         try {

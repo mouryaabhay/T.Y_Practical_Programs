@@ -1,3 +1,6 @@
+// 3) Write a java program to Create two threads using the Runnable interface.
+// One thread prints even numbers, another prints odd numbers from 1 to 20.
+
 class EvenOdd implements Runnable {
     private boolean isEven;
 

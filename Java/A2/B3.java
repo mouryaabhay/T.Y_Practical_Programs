@@ -9,13 +9,13 @@ class SharedResource {
 
     // Producer method
     public synchronized void produce(int value) {
-      while (available) {
-          try {
-              wait(); // wait if data already present
-          } catch (InterruptedException e) {
-              System.out.println(e);
-          }
-      }
+        while (available) {
+            try {
+                wait(); // wait if data already present
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
         data = value;
         System.out.println("Produced: " + data);
         available = true;
@@ -24,17 +24,17 @@ class SharedResource {
 
     // Consumer method
     public synchronized void consume() {
-      while(!available) {
-        try {
-            wait(); // wait if no data available
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
+        while(!available) {
+            try {
+                wait(); // wait if no data available
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
         }
         System.out.println("Consumed: " + data);
         available = false;
         notify(); // notify producer
-        }
+    }
 }
 
 class Producer extends Thread {

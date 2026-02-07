@@ -1,3 +1,6 @@
+// 2)Write a Java program to create multiple threads and assign names. Set different priorities for the threads.
+// Display the thread name and priority during execution and pause the execution of each thread using the sleep() method.
+
 class MyThread extends Thread {
     public MyThread(String name) {
         setName(name);
