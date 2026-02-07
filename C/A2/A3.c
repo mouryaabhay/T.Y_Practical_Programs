@@ -39,18 +39,10 @@ void initialize_bit_vector() {
 
 /* Display memory allocation status */
 void show_memory_blocks() {
-    int i;
     printf("\nMemory Blocks Status:\n");
-    for (i = 0; i < memory_size; i++) {
 
-        char* status;
-        if(bit_vector[i].allocated == 0)
-            status = "0";
-        else
-            status = "1";
-
-        printf("Block %d : %s\n", i, status);
-    }
+    for (int i = 0; i < memory_size; i++)
+        printf("Block %d : %d\n", i, bit_vector[i].allocated);
 }
 
 /* Add file to directory */
