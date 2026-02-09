@@ -60,8 +60,7 @@ void update_directory(file_detail *file) {
 int get_file(char *filename) {
     int i;
     for (i = 0; i < MAX_FILES; i++) {
-        if (dir[i] != NULL &&
-            strcmp(dir[i]->filename, filename) == 0) {
+        if (dir[i] != NULL && strcmp(dir[i]->filename, filename) == 0) {
             return i;
         }
     }
