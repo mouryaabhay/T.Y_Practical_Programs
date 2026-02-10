@@ -40,7 +40,7 @@ while True:
     if value == -1:
         print("Game exited.")
         break
-    if value < 1 or value > 9 or board[value - 1] != " ":
+    if value < 1 or value > 9: # Invalid input
         print("Invalid value. Try again.")
         continue
 
