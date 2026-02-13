@@ -1,7 +1,7 @@
 // Question 8: Display all column names and table metadata using DatabaseMetaData and ResultSetMetaData.
 import java.sql.*;
 
-public class CompleteDatabaseMetadata {
+public class C2 {
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/testdb";
         String user = "postgres";

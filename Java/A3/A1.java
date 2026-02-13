@@ -1,7 +1,7 @@
 // Question 1: Write a program to connect to a database and display a success message.
 import java.sql.*;
 
-public class DatabaseConnectionTest {
+public class A1 {
     public static void main(String[] args) {
         // Database credentials
         String url = "jdbc:postgresql://localhost:5432/testdb";

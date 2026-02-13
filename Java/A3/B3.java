@@ -4,7 +4,7 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class StudentManagementSystem {
+public class B3 {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/testdb";
     private static final String USER = "postgres";

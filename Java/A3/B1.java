@@ -2,7 +2,7 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class StudentInsertPreparedStatement {
+public class B1 {
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/testdb";
         String user = "postgres";

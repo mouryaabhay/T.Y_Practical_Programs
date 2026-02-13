@@ -3,7 +3,7 @@
 // using the DatabaseMetaData interface.
 import java.sql.*;
 
-public class DatabaseMetaDataDemo {
+public class B2 {
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/testdb";
         String user = "postgres";

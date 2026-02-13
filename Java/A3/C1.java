@@ -2,7 +2,7 @@
 // Use ResultSetMetaData to dynamically display column names and their data types along with the data.
 import java.sql.*;
 
-public class EmployeeResultSetMetaData {
+public class C1 {
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/testdb";
         String user = "postgres";
