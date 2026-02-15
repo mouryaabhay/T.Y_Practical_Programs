@@ -6,64 +6,44 @@ void accept_requests(int requests[], int nreqs) {
     int i;
     printf("Enter the disk requests:\n");
     for(i = 0; i < nreqs; i++) {
-        printf("Request %d: ", i+1);
+        printf("Request %d: ", i + 1);
         scanf("%d", &requests[i]);
     }
 }
 
-void sort(int arr[], int n) {
-    int i, j, temp;
-    // Bubble sort to sort requests in ascending order
-    for(i = 0; i < n-1; i++) {
-        for(j = 0; j < n-i-1; j++) {
-            if(arr[j] > arr[j+1]) {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
-}
-
 int sstf(int head, int requests[], int nreqs) {
-    int i, total_movement = 0;
-    int visited[200] = {0};
-    int count = nreqs;
+    int visited[200] = {0}; // Marks serviced requests
+    int total_movement = 0;
     int current_head = head;
-    int nearest, min_dist;
-    int nearest_index;
+    int completed = 0;
 
-    // Sort the requests first
-    sort(requests, nreqs);
-
+    printf("\nSSTF DISK SCHEDULING ALGORITHM\n");
     printf("\nSequence of head movement:\n");
-    printf("%d", head);
+    printf("%d", current_head);
 
-    while(count > 0) {
-        min_dist = INT_MAX;
-        nearest_index = -1;
+    while(completed < nreqs) {
+        int min_dist = INT_MAX, nearest_index = -1, i;
 
-        // Find the nearest unvisited request
+        // Find the closest unvisited request
         for(i = 0; i < nreqs; i++) {
             if(!visited[i]) {
                 int dist = abs(current_head - requests[i]);
-                if(dist < min_dist)
-                {
+
+                // Tie-breaking rule: If two tracks are equally close, choose the smaller track number
+                if(dist < min_dist || (dist == min_dist && requests[i] < requests[nearest_index])) {
                     min_dist = dist;
                     nearest_index = i;
-                    nearest = requests[i];
                 }
             }
         }
 
-        if(nearest_index != -1) {
-            // Update total movement
-            total_movement += min_dist;
-            current_head = nearest;
-            visited[nearest_index] = 1;
-            count--;
-            printf(" -> %d", current_head);
-        }
+        // Move head to nearest request
+        current_head = requests[nearest_index];
+        visited[nearest_index] = 1;
+        total_movement += min_dist;
+        completed++;
+
+        printf(" -> %d", current_head);
     }
 
     printf("\n\nTotal Head Movement: %d tracks\n", total_movement);
