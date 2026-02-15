@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 struct file_details {
     char file_name[10];
@@ -13,7 +14,7 @@ struct file_details {
     int file_end;
 } directory[100];
 
-int bit_vector[100];      // -1 = free block, otherwise stores next block index
+int bit_vector[100]; // -1 = free block, otherwise stores next block index
 int memory_size, free_blocks, count = 0;
 
 // Initialize memory
@@ -54,11 +55,18 @@ void add_directory_entry(char *filename, int filesize, int start_pos, int end_po
 
 // Create file (Linked Allocation)
 void create_file() {
-    int i = 0, filesize, start_pos = -1, prev_pos = -1, curr_pos;
+    int i, filesize, start_pos = -1, prev_pos = -1, curr_pos;
     char filename[10];
 
     printf("Enter file name: ");
     scanf("%s", filename);
+
+    for(i = 0; i < count; i++) {
+        if(strcmp(directory[i].file_name, filename) == 0) {
+            printf("\nFile already exists!\n");
+            return;
+        }
+    }
 
     printf("Enter file size (blocks): ");
     scanf("%d", &filesize);
@@ -68,21 +76,22 @@ void create_file() {
         return;
     }
 
-    while (i < filesize) {
+    i = 0;
+    while (i != filesize) {
         curr_pos = rand() % memory_size;
 
-        if(bit_vector[curr_pos] == -1 && curr_pos != prev_pos) {
+        if(bit_vector[curr_pos] == -1) {
             if(start_pos == -1)
                 start_pos = curr_pos; //first block of file
             else
                 update_bit_vector(prev_pos, curr_pos);  //link previous block to current block
 
+            update_bit_vector(curr_pos, -9);
             prev_pos = curr_pos;
             i++; // one block is allocated in memory
         }
     }
 
-    update_bit_vector(prev_pos, -9); // end of file marker
     add_directory_entry(filename, filesize, start_pos, prev_pos);
 
     free_blocks -= filesize;
@@ -105,9 +114,9 @@ void delete_file() {
             next_pos = start_pos;
 
             while (next_pos != -9) {
-                temp = next_pos;
-                next_pos = bit_vector[temp];
-                bit_vector[temp] = -1;
+                temp = bit_vector[next_pos];
+                bit_vector[next_pos] = -1;
+                next_pos = temp;
             }
 
             free_blocks += directory[i].file_size;
@@ -141,6 +150,7 @@ void display_directory() {
 int main() {
     int choice;
 
+    srand(time(NULL));
     initialize_bit_vector();
 
     do {
