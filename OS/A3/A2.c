@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
 void accept_requests(int requests[], int nreqs) {
     int i;
@@ -22,7 +21,7 @@ int sstf(int head, int requests[], int nreqs) {
     printf("%d", current_head);
 
     while(completed < nreqs) {
-        int min_dist = INT_MAX, nearest_index = -1, i;
+        int min_dist = 999999, nearest_index = -1, i;
 
         // Find the closest unvisited request
         for(i = 0; i < nreqs; i++) {

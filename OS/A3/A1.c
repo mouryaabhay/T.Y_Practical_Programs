@@ -5,7 +5,7 @@ void accept_requests(int requests[], int nreqs) {
     int i;
     printf("Enter the disk requests:\n");
     for(i = 0; i < nreqs; i++) {
-        printf("Request %d: ", i+1);
+        printf("Request %d: ", i + 1);
         scanf("%d", &requests[i]);
     }
 }
