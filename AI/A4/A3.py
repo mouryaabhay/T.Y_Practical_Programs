@@ -1,5 +1,9 @@
-# Medical Diagnosis System
-# This program assists in diagnosing diseases based on symptoms
+# Medical Diagnosis Using Rule-Based System
+# Problem: Assist doctors in diagnosing diseases based on symptoms.
+# AI Concept Used: Expert System
+# Explanation: The system uses IF-THEN rules to analyze symptoms and suggest
+# possible diagnoses.
+# Outcome: Improves decision-making accuracy and reduces diagnosis time.
 
 def diagnose(symptom1, symptom2, symptom3):
     """

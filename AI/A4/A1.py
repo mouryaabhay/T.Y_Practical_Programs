@@ -1,5 +1,8 @@
-# Simple Chatbot for Student FAQs
-# This program answers student questions about admission, fees, exams, and timetable
+# To build a Simple Chatbot
+# Problem: Automate responses to student FAQs.
+# AI Concept Used: Natural Language Processing
+# Explanation: The chatbot understands user input and generates appropriate responses.
+# Outcome: Reduces manual support and improves response time.
 
 def chatbot_response(user_input):
     """

@@ -1,5 +1,12 @@
-# Self-Driving Car Knowledge Base System
-# This program simulates decision-making for a self-driving car
+# To build a knowledge base for a self-driving car system
+# In self-driving cars like those developed by Waymo and Tesla.
+# Knowledge about the environment (roads, obstacles, traffic signals, pedestrian behavior) is
+# represented in various forms.
+# Build a simple knowledge base using production rules to represent road conditions and sensor data:
+# Conditions for Road: Speed Limit, Traffic Light (Red, Yellow, Green),Pedestrian Crosswalk
+# Conditions for Obstacles: Car, Pedestrian, And Cyclist Rules: If a traffic light is Red, then stop the
+# vehicle. Decision Trees help in decision-making: If there's an obstacle ahead, choose Avoid or Stop
+# based on sensor data.
 
 def check_traffic_rule(light_status):
     """
