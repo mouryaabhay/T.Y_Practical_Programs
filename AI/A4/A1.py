@@ -14,23 +14,21 @@ def chatbot_response(user_input):
     # Check for keywords and return appropriate responses
     if "admission" in user_input:
         return "Admission details: Applications are open from March to June. Please visit our website to apply online."
-    elif "fees" in user_input:
-        return "Fee structure: Tuition fee is $5000 per semester. Additional fees may apply for labs and activities."
     elif "exam" in user_input:
-        return "Exam schedule: Mid-term exams start from October 15. Final exams begin December 10."
+        return "Exam schedule: Mid-term exams start from 21 February. Final exams begin 16 March."
     elif "timetable" in user_input:
-        return "Class timetable: Regular classes run from 9 AM to 4 PM, Monday through Friday."
+        return "Class timetable: Regular classes run from 1:15 PM to 3:15 PM on Monday to Wednesday & 11:15 AM to 1:15 PM on Thursday & Friday."
     elif "hello" in user_input or "hi" in user_input:
-        return "Hello! How can I help you today? You can ask about admission, fees, exams, or timetable."
+        return "Hello! How can I help you today? You can ask about admission, exams, or timetable."
     elif "help" in user_input:
-        return "I can answer questions about: admission, fees, exams, and timetable. Type 'exit' to quit."
+        return "I can answer questions about: admission, exams, and timetable. Type 'exit' to quit."
     else:
-        return "I'm sorry, I don't have information about that. Please ask about admission, fees, exams, or timetable."
+        return "I'm sorry, I don't have information about that. Please ask about admission, exams, or timetable."
 
 def run_chatbot():
     """Runs the Student FAQ Chatbot in a concise loop."""
     print("Student FAQ Chatbot!")
-    print("You can ask me about: admission, fees, exam schedule, timetable.")
+    print("You can ask me about: admission, exam schedule, timetable.")
     print("Type 'exit' to end the conversation.")
 
     while True:
