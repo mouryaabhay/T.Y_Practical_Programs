@@ -40,14 +40,6 @@ def diagnose(symptom1, symptom2, symptom3):
     if "chest pain" in s and "shortness of breath" in s:
         return "HEART DISEASE - Please seek immediate medical attention!"
 
-    # Rule 6: Allergies
-    if "sneezing" in s and "rash" in s:
-        return "ALLERGIES - May include sneezing and skin reactions."
-
-    # Rule 7: Strep Throat
-    if "fever" in s and "sore throat" in s:
-        return "STREP THROAT - Accompanied by fever and sore throat."
-
     # If no specific rule matches
     return "Unable to determine specific condition. Please consult a doctor for proper diagnosis."
 
@@ -59,13 +51,11 @@ def display_symptom_guide():
     print("- fever")
     print("- cough")
     print("- tiredness")
-    print("- rash")
     print("- headache")
     print("- nausea")
     print("- sneezing")
     print("- chest pain")
     print("- shortness of breath")
-    print("- sore throat")
 
 def run_diagnosis_system():
     """
