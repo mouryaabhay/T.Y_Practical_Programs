@@ -15,42 +15,38 @@ def diagnose(symptom1, symptom2, symptom3):
     s3 = symptom3.lower()
 
     # Check for empty symptoms
-    symptoms = list(filter(None, [s1, s2, s3]))
+    s = list(filter(None, [s1, s2, s3]))
 
-    if len(symptoms) < 2:
+    if len(s) < 2:
         return "Insufficient symptoms for diagnosis. Please provide at least 2 symptoms."
 
     # Rule 1: Flu
-    if ("fever" in symptoms and "cough" in symptoms) or ("fever" in symptoms and "tiredness" in symptoms) or ("cough" in symptoms and "tiredness" in symptoms):
-        return "Possible diagnosis: FLU - Common symptoms include fever, cough, and tiredness."
+    if ("fever" in s and "cough" in s) or ("fever" in s and "tiredness" in s) or ("cough" in s and "tiredness" in s):
+        return "FLU - Common symptoms include fever, cough, and tiredness."
 
     # Rule 2: Measles
-    if "fever" in symptoms and "rash" in symptoms:
-        return "Possible diagnosis: MEASLES - Characterized by fever and skin rash."
+    if "fever" in s and "rash" in s:
+        return "MEASLES - Characterized by fever and skin rash."
 
     # Rule 3: Migraine
-    if "headache" in symptoms and "nausea" in symptoms:
-        return "Possible diagnosis: MIGRAINE - Often includes headache and nausea."
+    if "headache" in s and "nausea" in s:
+        return "MIGRAINE - Often includes headache and nausea."
 
     # Rule 4: Common Cold
-    if "cough" in symptoms and "sneezing" in symptoms:
-        return "Possible diagnosis: COMMON COLD - Includes cough and sneezing."
+    if "cough" in s and "sneezing" in s:
+        return "COMMON COLD - Includes cough and sneezing."
 
     # Rule 5: Heart Disease
-    if "chest pain" in symptoms and "shortness of breath" in symptoms:
-        return "Possible diagnosis: HEART DISEASE - Please seek immediate medical attention!"
+    if "chest pain" in s and "shortness of breath" in s:
+        return "HEART DISEASE - Please seek immediate medical attention!"
 
     # Rule 6: Allergies
-    if "sneezing" in symptoms and "rash" in symptoms:
-        return "Possible diagnosis: ALLERGIES - May include sneezing and skin reactions."
+    if "sneezing" in s and "rash" in s:
+        return "ALLERGIES - May include sneezing and skin reactions."
 
-    # Rule 7: COVID-19
-    if ("fever" in symptoms and "cough" in symptoms and "tiredness" in symptoms):
-        return "Possible diagnosis: COVID-19 - Please get tested and isolate."
-
-    # Rule 8: Strep Throat
-    if "fever" in symptoms and "sore throat" in symptoms:
-        return "Possible diagnosis: STREP THROAT - Accompanied by fever and sore throat."
+    # Rule 7: Strep Throat
+    if "fever" in s and "sore throat" in s:
+        return "STREP THROAT - Accompanied by fever and sore throat."
 
     # If no specific rule matches
     return "Unable to determine specific condition. Please consult a doctor for proper diagnosis."
@@ -85,6 +81,6 @@ def run_diagnosis_system():
 
     print("\nANALYZING SYMPTOMS...")
 
-    print(f"\nDIAGNOSIS RESULT: {diagnose(symptom1, symptom2, symptom3)}")
+    print(f"\nPossible diagnosis: {diagnose(symptom1, symptom2, symptom3)}")
 
 run_diagnosis_system()
