@@ -95,7 +95,7 @@ def run_car_decision_system():
     print("\nCrosswalk Present? (Yes/No)")
     crosswalk_present = input("Is there a pedestrian crosswalk? ")
 
-    print(f"\nPROCESSING...")
+    print("\nPROCESSING...")
 
     print(f"\nFINAL VEHICLE ACTION: {decision_tree(light_status, obstacle_type, crosswalk_present)}")
 
