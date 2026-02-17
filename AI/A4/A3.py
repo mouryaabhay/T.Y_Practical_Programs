@@ -15,7 +15,7 @@ def diagnose(symptom1, symptom2, symptom3):
     s3 = symptom3.lower()
 
     # Check for empty symptoms
-    symptoms = [s for s in [s1, s2, s3] if s != ""]
+    symptoms = list(filter(None, [s1, s2, s3]))
 
     if len(symptoms) < 2:
         return "Insufficient symptoms for diagnosis. Please provide at least 2 symptoms."
