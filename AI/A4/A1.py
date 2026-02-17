@@ -24,41 +24,20 @@ def chatbot_response(user_input):
     else:
         return "I'm sorry, I don't have information about that. Please ask about admission, fees, exams, or timetable."
 
-def main():
-    """
-    Main function to run the chatbot
-    """
-    print("=" * 50)
-    print("Welcome to the Student FAQ Chatbot!")
-    print("=" * 50)
-    print("You can ask me about:")
-    print("- Admission")
-    print("- Fees")
-    print("- Exam schedule")
-    print("- Timetable")
+def run_chatbot():
+    """Runs the Student FAQ Chatbot in a concise loop."""
+    print("Student FAQ Chatbot!")
+    print("You can ask me about: admission, fees, exam schedule, timetable.")
     print("Type 'exit' to end the conversation.")
-    print("-" * 50)
 
-    # Keep the chatbot running until user types 'exit'
     while True:
-        # Accept user input
         user_input = input("You: ")
-
-        # Check if input is empty
-        if len(user_input) == 0:
+        if not user_input:
             print("Chatbot: Please type a question.")
             continue
-
-        # Check if user wants to exit
         if user_input.lower() == "exit":
-            print("Chatbot: Thank you for using the FAQ Chatbot. Goodbye!")
+            print("\nProgram terminated")
             break
+        print(f"Chatbot: {chatbot_response(user_input)}")
 
-        # Get and display chatbot response
-        response = chatbot_response(user_input)
-        print(f"Chatbot: {response}")
-        print("-" * 50)
-
-# Run the chatbot
-if __name__ == "__main__":
-    main()
+run_chatbot()

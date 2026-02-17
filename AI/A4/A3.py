@@ -17,9 +17,7 @@ def diagnose(symptom1, symptom2, symptom3):
         return "Insufficient symptoms for diagnosis. Please provide at least 2 symptoms."
 
     # Rule 1: Flu
-    if ("fever" in symptoms and "cough" in symptoms) or \
-       ("fever" in symptoms and "tiredness" in symptoms) or \
-       ("cough" in symptoms and "tiredness" in symptoms):
+    if ("fever" in symptoms and "cough" in symptoms) or ("fever" in symptoms and "tiredness" in symptoms) or ("cough" in symptoms and "tiredness" in symptoms):
         return "Possible diagnosis: FLU - Common symptoms include fever, cough, and tiredness."
 
     # Rule 2: Measles
@@ -68,77 +66,30 @@ def display_symptom_guide():
     print("- chest pain")
     print("- shortness of breath")
     print("- sore throat")
-    print("(You can also enter other symptoms)")
 
-def main():
+def run_diagnosis_system():
     """
-    Main function to run the medical diagnosis system
+    Runs the medical diagnosis system.
     """
-    print("=" * 60)
     print("MEDICAL DIAGNOSIS ASSISTANT SYSTEM")
-    print("=" * 60)
-    print("This system provides possible diagnoses based on symptoms.")
-    print("NOTE: This is for educational purposes only.")
-    print("Always consult a healthcare professional for actual diagnosis.")
-    print("-" * 60)
 
-    # Display symptom guide
-    display_symptom_guide()
-    print("-" * 60)
-
-    # Accept symptoms from user
-    print("\nPlease enter your symptoms (you can enter up to 3 symptoms):")
-    symptom1 = input("Enter symptom 1 (or press Enter to skip): ")
-    symptom2 = input("Enter symptom 2 (or press Enter to skip): ")
-    symptom3 = input("Enter symptom 3 (or press Enter to skip): ")
-
-    print("\n" + "=" * 60)
-    print("ANALYZING SYMPTOMS...")
-    print("=" * 60)
-
-    # Get diagnosis
-    result = diagnose(symptom1, symptom2, symptom3)
-
-    # Display diagnosis
-    print("\nDIAGNOSIS RESULT:")
-    print(f">>> {result}")
-    print("=" * 60)
-
-    # Additional recommendations
-    print("\nRECOMMENDATIONS:")
-    print("1. This is an AI-based preliminary analysis only")
-    print("2. Consult a doctor for proper medical advice")
-    print("3. If symptoms are severe, seek immediate medical attention")
-    print("4. Follow prescribed treatments and medications")
-    print("=" * 60)
-
-# Run the medical diagnosis system
-if __name__ == "__main__":
-    main()
-
-    # Option for multiple diagnoses
-    print("\n" + "=" * 60)
-    another = input("Would you like to diagnose another set of symptoms? (yes/no): ")
-
-    while another.lower() == "yes":
-        print("\n" + "=" * 60)
+    while True:
         display_symptom_guide()
-        print("-" * 60)
+        print("\nPlease enter your symptoms:\n- You can enter up to 3 symptoms\n- Press Enter without typing to skip\n")
+        symptom1 = input("Symptom 1: ")
+        symptom2 = input("Symptom 2: ")
+        symptom3 = input("Symptom 3: ")
 
-        symptom1 = input("Enter symptom 1 (or press Enter to skip): ")
-        symptom2 = input("Enter symptom 2 (or press Enter to skip): ")
-        symptom3 = input("Enter symptom 3 (or press Enter to skip): ")
-
-        print("\n" + "=" * 60)
-        print("ANALYZING SYMPTOMS...")
-        print("=" * 60)
+        print("\nANALYZING SYMPTOMS...")
 
         result = diagnose(symptom1, symptom2, symptom3)
 
-        print("\nDIAGNOSIS RESULT:")
-        print(f">>> {result}")
-        print("=" * 60)
+        print(f"\nDIAGNOSIS RESULT: {result}")
 
-        another = input("\nWould you like to diagnose another set of symptoms? (yes/no): ")
+        another = input("\nWould you like to diagnose again? (yes/no): ")
+        if another.lower() != "yes":
+            break
 
-    print("\nMedical diagnosis system terminated. Stay healthy!")
+    print("\nProgram terminated")
+
+run_diagnosis_system()

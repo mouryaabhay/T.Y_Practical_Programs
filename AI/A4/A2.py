@@ -40,11 +40,6 @@ def decision_tree(light_status, obstacle_type, crosswalk_present):
     light_decision = check_traffic_rule(light_status)
     obstacle_decision = check_obstacle(obstacle_type)
 
-    print(f"\n--- Processing Decision ---")
-    print(f"Traffic Light: {light_status.upper()} -> Initial decision: {light_decision}")
-    print(f"Obstacle: {obstacle_type.capitalize()} -> Initial decision: {obstacle_decision}")
-    print(f"Crosswalk Present: {crosswalk_present}")
-
     # Decision tree logic
     if light_decision == "Stop":
         return "STOP - Red light detected"
@@ -78,59 +73,32 @@ def decision_tree(light_status, obstacle_type, crosswalk_present):
 
     return "CAUTION - Proceed with care"
 
-def main():
+def run_car_decision_system():
     """
-    Main function to run the self-driving car system
+    Runs the self-driving car system.
     """
-    print("=" * 60)
     print("SELF-DRIVING CAR DECISION SYSTEM")
-    print("=" * 60)
-    print("This system simulates how a self-driving car makes decisions")
-    print("based on traffic lights, obstacles, and road conditions.")
-    print("-" * 60)
 
-    # Get traffic light status
-    print("\nTraffic Light Options: Red, Yellow, Green")
-    light_status = input("Enter traffic light status: ")
+    while True:
+        print("\nTraffic Light Options: Red, Yellow, Green")
+        light_status = input("Enter traffic light status: ")
 
-    # Get obstacle type
-    print("\nObstacle Options: Car, Pedestrian, Cyclist, None")
-    obstacle_type = input("Enter obstacle type: ")
+        print("\nObstacle Options: Car, Pedestrian, Cyclist, None")
+        obstacle_type = input("Enter obstacle type: ")
 
-    # Get crosswalk information
-    print("\nCrosswalk Present? (Yes/No)")
-    crosswalk_present = input("Is there a pedestrian crosswalk? ")
+        print("\nCrosswalk Present? (Yes/No)")
+        crosswalk_present = input("Is there a pedestrian crosswalk? ")
 
-    # Make final decision
-    final_decision = decision_tree(light_status, obstacle_type, crosswalk_present)
-
-    # Display result
-    print("\n" + "=" * 60)
-    print("FINAL VEHICLE ACTION:")
-    print(f">>> {final_decision} <<<")
-    print("=" * 60)
-
-# Run the self-driving car system
-if __name__ == "__main__":
-    main()
-
-    # Option to run multiple scenarios
-    print("\n" + "=" * 60)
-    another = input("Would you like to test another scenario? (yes/no): ")
-
-    while another.lower() == "yes":
-        print("\n" + "=" * 60)
-        light_status = input("Enter traffic light status (Red/Yellow/Green): ")
-        obstacle_type = input("Enter obstacle type (Car/Pedestrian/Cyclist/None): ")
-        crosswalk_present = input("Is there a pedestrian crosswalk? (Yes/No): ")
+        print(f"\nPROCESSING...")
 
         final_decision = decision_tree(light_status, obstacle_type, crosswalk_present)
 
-        print("\n" + "=" * 60)
-        print("FINAL VEHICLE ACTION:")
-        print(f">>> {final_decision} <<<")
-        print("=" * 60)
+        print(f"\nFINAL VEHICLE ACTION: {final_decision}")
 
         another = input("\nWould you like to test another scenario? (yes/no): ")
+        if another.lower() != "yes":
+            break
 
-    print("\nSelf-driving car system terminated.")
+    print("\nProgram terminated")
+
+run_car_decision_system()
