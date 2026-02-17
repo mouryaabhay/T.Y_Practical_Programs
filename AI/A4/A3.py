@@ -85,8 +85,6 @@ def run_diagnosis_system():
 
     print("\nANALYZING SYMPTOMS...")
 
-    result = diagnose(symptom1, symptom2, symptom3)
-
-    print(f"\nDIAGNOSIS RESULT: {result}")
+    print(f"\nDIAGNOSIS RESULT: {diagnose(symptom1, symptom2, symptom3)}")
 
 run_diagnosis_system()
