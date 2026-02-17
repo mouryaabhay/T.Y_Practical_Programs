@@ -86,26 +86,19 @@ def run_car_decision_system():
     """
     print("SELF-DRIVING CAR DECISION SYSTEM")
 
-    while True:
-        print("\nTraffic Light Options: Red, Yellow, Green")
-        light_status = input("Enter traffic light status: ")
+    print("\nTraffic Light Options: Red, Yellow, Green")
+    light_status = input("Enter traffic light status: ")
 
-        print("\nObstacle Options: Car, Pedestrian, Cyclist, None")
-        obstacle_type = input("Enter obstacle type: ")
+    print("\nObstacle Options: Car, Pedestrian, Cyclist, None")
+    obstacle_type = input("Enter obstacle type: ")
 
-        print("\nCrosswalk Present? (Yes/No)")
-        crosswalk_present = input("Is there a pedestrian crosswalk? ")
+    print("\nCrosswalk Present? (Yes/No)")
+    crosswalk_present = input("Is there a pedestrian crosswalk? ")
 
-        print(f"\nPROCESSING...")
+    print(f"\nPROCESSING...")
 
-        final_decision = decision_tree(light_status, obstacle_type, crosswalk_present)
+    final_decision = decision_tree(light_status, obstacle_type, crosswalk_present)
 
-        print(f"\nFINAL VEHICLE ACTION: {final_decision}")
-
-        another = input("\nWould you like to test another scenario? (yes/no): ")
-        if another.lower() != "yes":
-            break
-
-    print("\nProgram terminated")
+    print(f"\nFINAL VEHICLE ACTION: {final_decision}")
 
 run_car_decision_system()

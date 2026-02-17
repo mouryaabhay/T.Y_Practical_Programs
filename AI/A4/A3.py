@@ -77,23 +77,16 @@ def run_diagnosis_system():
     """
     print("MEDICAL DIAGNOSIS ASSISTANT SYSTEM")
 
-    while True:
-        display_symptom_guide()
-        print("\nPlease enter your symptoms:\n- You can enter up to 3 symptoms\n- Press Enter without typing to skip\n")
-        symptom1 = input("Symptom 1: ")
-        symptom2 = input("Symptom 2: ")
-        symptom3 = input("Symptom 3: ")
+    display_symptom_guide()
+    print("\nPlease enter your symptoms:\n- You can enter up to 3 symptoms\n- Press Enter without typing to skip\n")
+    symptom1 = input("Symptom 1: ")
+    symptom2 = input("Symptom 2: ")
+    symptom3 = input("Symptom 3: ")
 
-        print("\nANALYZING SYMPTOMS...")
+    print("\nANALYZING SYMPTOMS...")
 
-        result = diagnose(symptom1, symptom2, symptom3)
+    result = diagnose(symptom1, symptom2, symptom3)
 
-        print(f"\nDIAGNOSIS RESULT: {result}")
-
-        another = input("\nWould you like to diagnose again? (yes/no): ")
-        if another.lower() != "yes":
-            break
-
-    print("\nProgram terminated")
+    print(f"\nDIAGNOSIS RESULT: {result}")
 
 run_diagnosis_system()
