@@ -13,57 +13,6 @@ public class B3 {
     private static Connection con;
     private static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        try {
-            Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Connected to database successfully!");
-
-            // Create table if not exists
-            createTableIfNotExists();
-
-            int choice;
-            do {
-                displayMenu();
-                System.out.print("Enter your choice: ");
-                choice = sc.nextInt();
-                sc.nextLine(); // consume newline
-
-                switch (choice) {
-                    case 1:
-                        insertStudent();
-                        break;
-                    case 2:
-                        displayAllStudents();
-                        break;
-                    case 3:
-                        searchStudent();
-                        break;
-                    case 4:
-                        updateStudent();
-                        break;
-                    case 5:
-                        deleteStudent();
-                        break;
-                    case 6:
-                        System.out.println("Thank you for using Student Management System!");
-                        break;
-                    default:
-                        System.out.println("Invalid choice! Please try again.");
-                }
-            } while (choice != 6);
-
-            con.close();
-            System.out.println("Connection closed");
-
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            sc.close();
-        }
-    }
-
     private static void displayMenu() {
         System.out.println("\nSTUDENT MANAGEMENT SYSTEM");
         System.out.println("==============================");
@@ -288,5 +237,56 @@ public class B3 {
         rs.close();
         pstmt.close();
         return exists;
+    }
+
+    public static void main(String[] args) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connected to database successfully!");
+
+            // Create table if not exists
+            createTableIfNotExists();
+
+            int choice;
+            do {
+                displayMenu();
+                System.out.print("Enter your choice: ");
+                choice = sc.nextInt();
+                sc.nextLine(); // consume newline
+
+                switch (choice) {
+                    case 1:
+                        insertStudent();
+                        break;
+                    case 2:
+                        displayAllStudents();
+                        break;
+                    case 3:
+                        searchStudent();
+                        break;
+                    case 4:
+                        updateStudent();
+                        break;
+                    case 5:
+                        deleteStudent();
+                        break;
+                    case 6:
+                        System.out.println("Thank you for using Student Management System!");
+                        break;
+                    default:
+                        System.out.println("Invalid choice! Please try again.");
+                }
+            } while (choice != 6);
+
+            con.close();
+            System.out.println("Connection closed");
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            sc.close();
+        }
     }
 }

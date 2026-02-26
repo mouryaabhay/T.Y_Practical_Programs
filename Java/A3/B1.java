@@ -3,6 +3,25 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class B1 {
+    private static void displayAllStudents(Connection con) throws SQLException {
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Student ORDER BY id");
+
+        System.out.println("\nCurrent Student Records:");
+        System.out.println("ID\tName\t\t\tMarks");
+        System.out.println("--------------------------------------");
+
+        while (rs.next()) {
+            System.out.printf("%d\t%-20s\t%.2f%n",
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getDouble("marks"));
+        }
+
+        rs.close();
+        stmt.close();
+    }
+    
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/testdb";
         String user = "postgres";
@@ -68,24 +87,5 @@ public class B1 {
         } finally {
             sc.close();
         }
-    }
-
-    private static void displayAllStudents(Connection con) throws SQLException {
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Student ORDER BY id");
-
-        System.out.println("\nCurrent Student Records:");
-        System.out.println("ID\tName\t\t\tMarks");
-        System.out.println("--------------------------------------");
-
-        while (rs.next()) {
-            System.out.printf("%d\t%-20s\t%.2f%n",
-                rs.getInt("id"),
-                rs.getString("name"),
-                rs.getDouble("marks"));
-        }
-
-        rs.close();
-        stmt.close();
     }
 }
