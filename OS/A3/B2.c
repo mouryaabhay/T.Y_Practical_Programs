@@ -1,3 +1,5 @@
+// Write an OS program to implement C-SCAN Disk Scheduling algorithm.
+
 #include <stdio.h>
 #include <stdlib.h>
 

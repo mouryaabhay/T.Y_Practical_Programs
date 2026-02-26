@@ -1,3 +1,5 @@
+// Write an OS program to implement C-LOOK Disk Scheduling algorithm.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -85,8 +87,7 @@ int c_look(int head, int direction, int requests[], int nreqs) {
     return total_movement;
 }
 
-int main()
-{
+int main() {
     int requests[200];
     int nreqs, head, direction;
 

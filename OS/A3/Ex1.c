@@ -1,3 +1,5 @@
+// Write an OS program to implement LOOK Disk Scheduling algorithm.
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 200

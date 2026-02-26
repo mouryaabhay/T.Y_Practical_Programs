@@ -1,3 +1,5 @@
+// Write an OS program to implement SSTF Disk Scheduling algorithm.
+
 #include <stdio.h>
 #include <stdlib.h>
 
