@@ -15,14 +15,10 @@ public class B1 {
             Connection con = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to database");
 
-            // Prepare SQL query with parameters
-            String sql = "INSERT INTO Student (id, name, marks) VALUES (?, ?, ?)";
-
-            // Create PreparedStatement
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            // Create PreparedStatement & Prepare SQL query with parameters
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO Student (id, name, marks) VALUES (?, ?, ?)");
 
             System.out.println("\nINSERT NEW STUDENT RECORD");
-            System.out.println("=============================");
 
             // Get user input
             System.out.print("Enter Student ID: ");
@@ -64,22 +60,15 @@ public class B1 {
                     rs.getDouble("marks"));
             }
 
+            // Close resources
             rs.close();
             stmt.close();
-
-            // Close resources
             pstmt.close();
             con.close();
             System.out.println("Connection closed");
 
-        } catch (SQLException e) {
-            if (e.getSQLState().equals("23505")) {
-                System.out.println("Error: Student ID already exists!");
-            } else {
-                System.out.println("Database error: " + e.getMessage());
-            }
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(e);
         } finally {
             sc.close();
         }
