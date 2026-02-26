@@ -5,39 +5,31 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class B3 {
+    String URL = "jdbc:postgresql://localhost:5432/testdb";
+    String USER = "postgres";
+    String PASSWORD = "postgres";
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/testdb";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+    Connection con;
+    Scanner sc = new Scanner(System.in);
+    Statement stmt = con.createStatement();
 
-    private static Connection con;
-    private static Scanner sc = new Scanner(System.in);
-
-    private static void displayMenu() {
+    void displayMenu() {
         System.out.println("\nSTUDENT MANAGEMENT SYSTEM");
-        System.out.println("==============================");
         System.out.println("1. Insert Student");
         System.out.println("2. Display All Students");
         System.out.println("3. Search Student");
         System.out.println("4. Update Student");
         System.out.println("5. Delete Student");
         System.out.println("6. Exit");
-        System.out.println("==============================");
     }
 
-    private static void createTableIfNotExists() throws SQLException {
-        Statement stmt = con.createStatement();
-        String sql = "CREATE TABLE IF NOT EXISTS Student (" +
-                    "id INT PRIMARY KEY, " +
-                    "name VARCHAR(100) NOT NULL, " +
-                    "marks DECIMAL(5,2))";
-        stmt.executeUpdate(sql);
+    void createTableIfNotExists() {
+        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Student (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, marks DECIMAL(5,2))");
         stmt.close();
     }
 
-    private static void insertStudent() throws SQLException {
+    void insertStudent() {
         System.out.println("\nINSERT STUDENT RECORD");
-        System.out.println("----------------------");
 
         System.out.print("Enter Student ID: ");
         int id = sc.nextInt();
@@ -49,8 +41,7 @@ public class B3 {
         System.out.print("Enter Marks: ");
         double marks = sc.nextDouble();
 
-        String sql = "INSERT INTO Student VALUES (?, ?, ?)";
-        PreparedStatement pstmt = con.prepareStatement(sql);
+        PreparedStatement pstmt = con.prepareStatement("INSERT INTO Student VALUES (?, ?, ?)");
         pstmt.setInt(1, id);
         pstmt.setString(2, name);
         pstmt.setDouble(3, marks);
@@ -64,13 +55,12 @@ public class B3 {
         pstmt.close();
     }
 
-    private static void displayAllStudents() throws SQLException {
+    void displayAllStudents() {
         System.out.println("\nALL STUDENT RECORDS");
         System.out.println("==================================");
         System.out.printf("%-5s | %-20s | %-6s%n", "ID", "Name", "Marks");
         System.out.println("==================================");
 
-        Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM Student ORDER BY id");
 
         boolean hasRecords = false;
@@ -92,8 +82,7 @@ public class B3 {
         stmt.close();
     }
 
-    private static int getRowCount() throws SQLException {
-        Statement stmt = con.createStatement();
+    int getRowCount() {
         ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM Student");
         rs.next();
         int count = rs.getInt(1);
@@ -102,15 +91,14 @@ public class B3 {
         return count;
     }
 
-    private static void searchStudent() throws SQLException {
+    void searchStudent() {
         System.out.println("\nSEARCH STUDENT");
         System.out.println("----------------");
 
         System.out.print("Enter Student ID to search: ");
         int id = sc.nextInt();
 
-        String sql = "SELECT * FROM Student WHERE id = ?";
-        PreparedStatement pstmt = con.prepareStatement(sql);
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Student WHERE id = ?");
         pstmt.setInt(1, id);
 
         ResultSet rs = pstmt.executeQuery();
@@ -128,7 +116,7 @@ public class B3 {
         pstmt.close();
     }
 
-    private static void updateStudent() throws SQLException {
+    void updateStudent() {
         System.out.println("\nUPDATE STUDENT");
         System.out.println("----------------");
 
@@ -157,16 +145,14 @@ public class B3 {
             case 1:
                 System.out.print("Enter new Name: ");
                 String newName = sc.nextLine();
-                sql = "UPDATE Student SET name = ? WHERE id = ?";
-                pstmt = con.prepareStatement(sql);
+                pstmt = con.prepareStatement("UPDATE Student SET name = ? WHERE id = ?");
                 pstmt.setString(1, newName);
                 pstmt.setInt(2, id);
                 break;
             case 2:
                 System.out.print("Enter new Marks: ");
                 double newMarks = sc.nextDouble();
-                sql = "UPDATE Student SET marks = ? WHERE id = ?";
-                pstmt = con.prepareStatement(sql);
+                pstmt = con.prepareStatement("UPDATE Student SET marks = ? WHERE id = ?");
                 pstmt.setDouble(1, newMarks);
                 pstmt.setInt(2, id);
                 break;
@@ -175,8 +161,7 @@ public class B3 {
                 String name = sc.nextLine();
                 System.out.print("Enter new Marks: ");
                 double marks = sc.nextDouble();
-                sql = "UPDATE Student SET name = ?, marks = ? WHERE id = ?";
-                pstmt = con.prepareStatement(sql);
+                pstmt = con.prepareStatement("UPDATE Student SET name = ?, marks = ? WHERE id = ?");
                 pstmt.setString(1, name);
                 pstmt.setDouble(2, marks);
                 pstmt.setInt(3, id);
@@ -195,7 +180,7 @@ public class B3 {
         pstmt.close();
     }
 
-    private static void deleteStudent() throws SQLException {
+    void deleteStudent() {
         System.out.println("\nDELETE STUDENT");
         System.out.println("----------------");
 
@@ -212,8 +197,7 @@ public class B3 {
         String confirm = sc.next();
 
         if (confirm.equalsIgnoreCase("y")) {
-            String sql = "DELETE FROM Student WHERE id = ?";
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Student WHERE id = ?");
             pstmt.setInt(1, id);
 
             int result = pstmt.executeUpdate();
@@ -228,9 +212,8 @@ public class B3 {
         }
     }
 
-    private static boolean studentExists(int id) throws SQLException {
-        String sql = "SELECT id FROM Student WHERE id = ?";
-        PreparedStatement pstmt = con.prepareStatement(sql);
+    boolean studentExists(int id) {
+        PreparedStatement pstmt = con.prepareStatement("SELECT id FROM Student WHERE id = ?");
         pstmt.setInt(1, id);
         ResultSet rs = pstmt.executeQuery();
         boolean exists = rs.next();
@@ -239,7 +222,7 @@ public class B3 {
         return exists;
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         try {
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection(URL, USER, PASSWORD);

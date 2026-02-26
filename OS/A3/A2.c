@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Bubble Sort
+void sort(int arr[], int nreqs) {
+    int i, j, temp;
+    for(i = 0; i < nreqs - 1; i++)
+        for(j = 0; j < nreqs - i - 1; j++)
+            if(arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+
+// Accept disk requests
 void accept_requests(int requests[], int nreqs) {
     int i;
     printf("Enter the disk requests:\n");
@@ -8,41 +21,49 @@ void accept_requests(int requests[], int nreqs) {
         printf("Request %d: ", i + 1);
         scanf("%d", &requests[i]);
     }
+    sort(requests, nreqs);   // Sorting
 }
 
-int sstf(int head, int requests[], int nreqs) {
-    int visited[200] = {0}; // Marks serviced requests
+// SSTF Algorithm
+int sstf(int head, int requests[], int nreqs, int tie_direction) {
+    int visited[200];
     int total_movement = 0;
-    int current_head = head;
-    int completed = 0;
+    int count = nreqs;
+    int i;
 
-    printf("\nSSTF DISK SCHEDULING ALGORITHM\n");
-    printf("\nSequence of head movement:\n");
-    printf("%d", current_head);
+    for(i = 0;i < nreqs;i++)
+        visited[i] = 0;
 
-    while(completed < nreqs) {
-        int min_dist = 999999, nearest_index = -1, i;
+    printf("\nHead Movement Order:\n");
+    printf("%d ", head);
 
-        // Find the closest unvisited request
+    while(count > 0) {
+        int min_dist = 9999;
+        int index = -1;
+
         for(i = 0; i < nreqs; i++) {
             if(!visited[i]) {
-                int dist = abs(current_head - requests[i]);
+                int dist = abs(head - requests[i]);
 
-                // Tie-breaking rule: If two tracks are equally close, choose the smaller track number
-                if(dist < min_dist || (dist == min_dist && requests[i] < requests[nearest_index])) {
+                if(dist < min_dist) {
                     min_dist = dist;
-                    nearest_index = i;
+                    index = i;
+                } else if(dist == min_dist) {
+                    // If tie occurs, follow user preference
+                    if(tie_direction == -1 && requests[i] < head)
+                        index = i;
+                    else if(tie_direction == 1 && requests[i] > head)
+                        index = i;
                 }
             }
         }
 
-        // Move head to nearest request
-        current_head = requests[nearest_index];
-        visited[nearest_index] = 1;
-        total_movement += min_dist;
-        completed++;
+        total_movement += abs(head - requests[index]);
+        head = requests[index];
+        visited[index] = 1;
 
-        printf(" -> %d", current_head);
+        printf("-> %d ", head);
+        count--;
     }
 
     printf("\n\nTotal Head Movement: %d tracks\n", total_movement);
@@ -52,8 +73,7 @@ int sstf(int head, int requests[], int nreqs) {
 int main() {
     int requests[200];
     int nreqs, head;
-
-    printf("SSTF DISK SCHEDULING ALGORITHM\n");
+    int tie_direction;
 
     // Accept Number of requests
     printf("Enter the number of requests: ");
@@ -65,7 +85,12 @@ int main() {
     printf("Enter the initial head position: ");
     scanf("%d", &head);
 
-    sstf(head, requests, nreqs);
+    printf("If equal distance occurs:\n");
+    printf("Enter 1 to go RIGHT\n");
+    printf("Enter -1 to go LEFT\n");
+    scanf("%d", &tie_direction);
+
+    sstf(head, requests, nreqs, tie_direction);
 
     return 0;
 }
