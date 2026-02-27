@@ -39,11 +39,7 @@ public class B1 {
             // Execute insert
             int rowsAffected = pstmt.executeUpdate();
 
-            if (rowsAffected > 0) {
-                System.out.println("Student record inserted successfully!");
-            } else {
-                System.out.println("Failed to insert student record");
-            }
+            System.out.println(rowsAffected > 0 ? "Student record inserted successfully!" : "Failed to insert student record");
 
             // Display current records
             Statement stmt = con.createStatement();
@@ -66,7 +62,6 @@ public class B1 {
             pstmt.close();
             con.close();
             System.out.println("Connection closed");
-
         } catch (Exception e) {
             System.out.println(e);
         } finally {
