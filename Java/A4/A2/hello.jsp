@@ -4,6 +4,7 @@
     Write a Program to Create a JSP page that displays "Hello User!"
     using scriptlet and expression tag.
 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <title>Hello User JSP</title>
